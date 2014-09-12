@@ -1,0 +1,90 @@
+        #resultBody{
+            margin: 0;
+            padding: 0;
+            width: 85%;
+            float: left;
+        }
+        #recent_posts{
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+        .recent_post_menue{
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+            height: auto;
+        }
+        .resultRow figure{
+            width: 200px;
+            height: 130px;
+            position: relative;
+            overflow: hidden;
+			display: inline-block;
+			margin: 20px;
+			
+			
+        }
+        .resultRow figure img{
+            width: 200px;
+            height: 130px;
+			display: block;
+        }
+        .resultRow figure figcaption{
+            position: absolute;
+            width: 100%;
+            height: 30px;
+            left: 0;
+            bottom: 0;
+            display: none;
+        }
+        .resultRow figure figcaption a{
+            opacity: .5;
+            background-color: #000;
+            line-height: 30px;
+            color: #fff;
+            display: block;
+            text-decoration: none;
+        }
+        .resultRow figure figcaption a:hover{
+            opacity: 1;
+        }
+        .load-more{
+            text-align: center;
+            display: none;
+        }
+        .load-more-btn{
+            display: inline-block;
+            border: 1px solid #808080;
+            background-color: #d3d3d3;
+            border-radius: 8px;
+            cursor: pointer;
+            height: 40px;
+            line-height: 40px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            color: #5c5c5c;
+            padding:0 20px;
+        }
+        .load-more-btn:hover{
+            color: #fff;
+        }
+        .load-more-btn:active{
+            background-color: #b7b7b7;
+        }
+        .ajax-loading{
+            height: 160px;
+            background: url(images/loading.gif) center center no-repeat;
+            display: none;
+        }
+        .ajax-error,.ajax-empty{
+            display: none;
+            text-align: center;
+            line-height: 40px;
+            height: 40px;
+            font-size: 16px;
+            color: #980f00;
+            font-weight: bold;
+        }
+        .clear-both{clear: both;}

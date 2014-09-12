@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+
+<!--head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">    
+  <title>MemeMaster Home Page</title>
+  <link rel="stylesheet" href="css/common.css">
+</head-->
+<head>
+	<title>C.R.A.P. Meme Search Result</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="css/common.css" >
+	<link rel="stylesheet" type="text/css" href="css/selectedScreen.css" >
+	<link rel="stylesheet" type="text/css" href="css/resultPage.css" >
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" >
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lobster" />
+	<link rel="shortcut icon" href="favicon.ico">
+	<script src='bootstrap/css/navbar-static-top.css'></script>
+	<script src='https://cdn.firebase.com/js/client/1.0.15/firebase.js'></script>
+	<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
+	<script src='bootstrap/js/bootstrap.js'></script>
+</head>
+<body>
+    <div class="navbar navbar-default navbar-static-top" id="top" role="navigation">
+      <div id='top' class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button> 
+          <a class="navbar-brand" href="index.html"><img alt="" src="images/logo.png"/>Meme Master</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+			<li><a id="upload_link" href="#">Upload</a></li>
+            <li><a href="meme_maker.html">Create</a></li>
+			<li><a href="extension/extension.crx">Chrome Extension</a></li>
+          </ul>
+		  <a class="navbar-brand navbar-right" id="head_profile" href="home.html"><img alt="" src="images/profile.jpg"/>Thomas Powell</a>
+		  <form class="navbar-form navbar-right" role="form" method="get" action="searchpage.html">
+			  <div class="form-group">
+			    <input type="text" name="q" placeholder="Search" class="form-control">
+				<div class="btn-group">
+				  <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+				  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+					<span class="caret"></span>
+					<span class="sr-only">Toggle Dropdown</span>
+				  </button>
+				  <ul class="dropdown-menu" id="filter-drop" role="menu">
+					<li><a>keyword</a></li>
+					<li><a>url</a></li>
+					<li><a>time(epoch)</a></li>
+				  </ul>  
+				<input type="text" name="filter" value ="keyword" id="invis_filter">
+				</div>
+			  </div>
+		  </form>
+        </div>
+      </div>
+    </div>
+
+    <br />
+
+    <div id="body_container" style="margin-top: 10px; padding-left:5%; width: 95%;">
+        <aside id="recent_posts">
+            <h4>Recent Posts</h4>
+            <ul class="recent_post_menue">
+                <li class="recent_post_container">
+                    <h4 class="recent_post_title">Meme Title</h4>
+                    <img alt="1" class="recent_post_pic" src="images/miguel-herrera-celebration.gif"/>
+                    <form class="ratingsForm">
+                        <div class="stars">
+                            <input type="radio" name="star" class="star-1" id="star-1" />
+                            <label class="star-1" for="star-1">1</label>
+                            <input type="radio" name="star" class="star-2" id="star-2" />
+                            <label class="star-2" for="star-2">2</label>
+                            <input type="radio" name="star" class="star-3" id="star-3" />
+                            <label class="star-3" for="star-3">3</label>
+                            <input type="radio" name="star" class="star-4" id="star-4" />
+                            <label class="star-4" for="star-4">4</label>
+                            <input type="radio" name="star" class="star-5" id="star-5" />
+                            <label class="star-5" for="star-5">5</label>
+                            <span></span>
+                        </div>
+                    </form>
+                </li>
+                
+                <li class="recent_post_container">
+                    <h4 class="recent_post_title">Meme Title</h4>
+                    <img alt="2" class="recent_post_pic" src="images/WorldCupMeme.jpg"/>
+                    <form class="ratingsForm">
+                        <div class="stars">
+                            <input type="radio" name="star" class="star-1"  />
+                            <label class="star-1" for="star-1">1</label>
+                            <input type="radio" name="star" class="star-2"  />
+                            <label class="star-2" for="star-2">2</label>
+                            <input type="radio" name="star" class="star-3"  />
+                            <label class="star-3" for="star-3">3</label>
+                            <input type="radio" name="star" class="star-4"  />
+                            <label class="star-4" for="star-4">4</label>
+                            <input type="radio" name="star" class="star-5"  />
+                            <label class="star-5" for="star-5">5</label>
+                            <span></span>
+                        </div>
+                    </form>
+                </li>
+                
+                <li class="recent_post_container">
+                    <h4 class="recent_post_title">Meme Title</h4>
+                    <img alt="3" class="recent_post_pic" src="images/head-injury.gif"/>
+                    <form class="ratingsForm">
+                        <div class="stars">
+                            <input type="radio" name="star" class="star-1" />
+                            <label class="star-1" for="star-1">1</label>
+                            <input type="radio" name="star" class="star-2"  />
+                            <label class="star-2" for="star-2">2</label>
+                            <input type="radio" name="star" class="star-3"  />
+                            <label class="star-3" for="star-3">3</label>
+                            <input type="radio" name="star" class="star-4"  />
+                            <label class="star-4" for="star-4">4</label>
+                            <input type="radio" name="star" class="star-5"  />
+                            <label class="star-5" for="star-5">5</label>
+                            <span></span>
+                        </div>
+                    </form>
+                </li>
+            </ul>
+        </aside> 
+        <div id="resultBody">
+            <div class="resultRow">
+            </div>
+			<div  style="align:left;">
+			 <a href="#">Jump to Top</a>
+			</div>
+            <div class="load-more">
+                <span class="load-more-btn">LOAD MORE</span>
+            </div>
+			
+            <div class="ajax-loading"></div>
+            <div class="ajax-error">
+                <span>LOAD FAIL</span>
+                <span class="load-more-btn">RETRY</span>
+            </div>
+            <div class="ajax-empty">NO RESULT</div>
+        </div>
+        <div class="clear-both"></div>
+    </div>
+	
+    <hr>
+    <!--footer>
+        <nav class="nav_global">
+            <ul>
+                <li><a href="#">About This Site</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="team_page/index.html">Team Page</a></li>
+            </ul>
+        </nav>
+    </footer-->
+	
+	<div class="footer" role="navigation">
+      <div class="container">
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="team_page/index.html">About Us</a></li>
+			<li><a href="#">Privacy</a></li>
+            <li><a href="help.html">Help</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+	
+	<script src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="js/jquery.lazyload.js?v=1.9.1"></script>
+	<script>
+        var picStartIndex = 0;
+        var pageCount = 24;
+//		var split = location.search.replace('?', '').split('=');
+//		var searchTerm = split[1];
+//		var request = $.ajax({
+//			type: 'GET',
+//			url: 'http://api.giphy.com/v1/gifs/search?q=' + searchTerm + '&offset=0&limit=30&api_key=dc6zaTOxFJmzC',
+//			dataType: "json"
+//		});
+//		request.done(function(data){
+//			console.log(data);
+//			for(i=0; i<=8; i++){
+//                $("#thumb" + i+" img").addClass('lazy');
+//				$("#thumb"+ i +" img").attr("data-original", data["data"][i]["images"]["fixed_width"]["url"]);
+//				$("#thumb" + i).attr("href", "selectedScreen.html?gif=" + data["data"][i]["images"]["fixed_height"]["url"]);
+//			}
+//            $(".lazy").lazyload({
+//                placeholder : "images/loading.gif",
+//                effect : "fadeIn"
+//            });
+//		});
+
+        function createFigure(){
+            var split = location.search.replace('?', '').split('=');
+            var searchTerm = split[1];
+            var request = $.ajax({
+                type: 'GET',
+                url: 'http://api.giphy.com/v1/gifs/search?q=' + searchTerm + '&offset=' + picStartIndex + '&limit=' + pageCount + '&api_key=dc6zaTOxFJmzC',
+                dataType: "json"
+            });
+            //hide the load-more button when the ajax is loading
+            $(".load-more").hide();
+            $(".ajax-loading").show();
+            $(".ajax-error").hide();
+            $(".ajax-empty").hide();
+            request.done(function(data){
+                //console.log(data);
+                var htmlText='';
+                //create figure
+                if(data["data"].length>0){
+                    for(var i=0; i<data["data"].length; i++){
+                        var path = data["data"][i]["images"]["fixed_width_downsampled"]["url"]
+                        var figureHref = "selectedScreen.html?gif=" + data["data"][i]["images"]["fixed_height"]["url"];
+                        var figcaptionHref="javascript:void(0);";
+                        htmlText += '<figure><a href="'+figureHref+'"><img class="thumbnail lazy" data-original="'+path+'"  alt="" /></a><figcaption><a href="'+figcaptionHref+'">Add to Favorite</a></figcaption></figure>'
+                    }
+                    picStartIndex += data.pagination.count;
+                    //add the figure to the resultRow
+                    $(".resultRow").append(htmlText);
+                    //use lazyload
+                    $(".lazy").lazyload({
+                        placeholder : "images/loading.gif",
+                        effect : "fadeIn"
+                    });
+                    //show the load-more button when the ajax is done
+                    if(data.pagination.count >= pageCount){
+                        $(".load-more").show();
+                    }
+                    $(".ajax-loading").hide();
+                    $(".ajax-error").hide();
+                    $(".ajax-empty").hide();
+                    //when the mouse enter the figure show the add-to-Favorite button
+                    $(".resultRow figure").mouseenter(function(){
+                        $(this).find("figcaption").stop().slideDown();
+                    });
+                    //when the mouse leave the figure hide the add-to-Favorite button
+                    $(".resultRow figure").mouseleave(function(){
+                        $(this).find("figcaption").stop().slideUp();
+                    });
+                }
+                else{
+                    $(".load-more").hide();
+                    $(".ajax-loading").hide();
+                    $(".ajax-error").hide();
+                    $(".ajax-empty").show();
+                }
+            });
+            request.error(function(e){
+                console.log(e);
+                $(".ajax-error").show();
+                $(".load-more").hide();
+                $(".ajax-loading").hide();
+                $(".ajax-empty").hide();
+            });
+        }
+        $(document).ready(function(){
+            createFigure();
+            $(".load-more-btn").click(function(e){
+                createFigure();
+            });
+        });
+	</script>
+    
+</body>
+<!--style type="text/css">
+        #resultBody{
+            margin: 0;
+            padding: 0;
+            width: 85%;
+            float: left;
+        }
+        #recent_posts{
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+        .recent_post_menue{
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+            height: auto;
+        }
+        .resultRow figure{
+            width: 200px;
+            height: 130px;
+            position: relative;
+            overflow: hidden;
+			display: inline-block;
+			margin: 20px;
+			
+			
+        }
+        .resultRow figure img{
+            width: 200px;
+            height: 130px;
+			display: block;
+        }
+        .resultRow figure figcaption{
+            position: absolute;
+            width: 100%;
+            height: 30px;
+            left: 0;
+            bottom: 0;
+            display: none;
+        }
+        .resultRow figure figcaption a{
+            opacity: .5;
+            background-color: #000;
+            line-height: 30px;
+            color: #fff;
+            display: block;
+            text-decoration: none;
+        }
+        .resultRow figure figcaption a:hover{
+            opacity: 1;
+        }
+        .load-more{
+            text-align: center;
+            display: none;
+        }
+        .load-more-btn{
+            display: inline-block;
+            border: 1px solid #808080;
+            background-color: #d3d3d3;
+            border-radius: 8px;
+            cursor: pointer;
+            height: 40px;
+            line-height: 40px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            color: #5c5c5c;
+            padding:0 20px;
+        }
+        .load-more-btn:hover{
+            color: #fff;
+        }
+        .load-more-btn:active{
+            background-color: #b7b7b7;
+        }
+        .ajax-loading{
+            height: 160px;
+            background: url(images/loading.gif) center center no-repeat;
+            display: none;
+        }
+        .ajax-error,.ajax-empty{
+            display: none;
+            text-align: center;
+            line-height: 40px;
+            height: 40px;
+            font-size: 16px;
+            color: #980f00;
+            font-weight: bold;
+        }
+        .clear-both{clear: both;}
+    </style-->
+</html>

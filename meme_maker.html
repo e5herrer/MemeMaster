@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">    
+  <title>MemeMaster Home Page</title>
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/mememaker.css">
+<script src='https://cdn.firebase.com/js/client/1.0.15/firebase.js'></script>
+<link rel="stylesheet" type="text/css" href="css/selectedScreen.css" >
+<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" >
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lobster" />
+<link rel="shortcut icon" href="favicon.ico">
+<!--script src='bootstrap/css/navbar-static-top.css'></script -->
+  <script type="text/javascript" src="js/jscolor/jscolor.js"></script>
+
+    
+</head>
+<body>
+
+	<!--HEADER/NAV STARTS HERE-->
+    <div class="navbar navbar-default navbar-static-top" role="navigation">
+      <div id='top' class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button> 
+          <a class="navbar-brand" href="index.html"><img src="images/logo.png"/>Meme Master</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+			<li><a id="upload_link" href="#about">Upload</a></li>
+            <li><a href="meme_maker.html">Create</a></li>
+			<li><a href="extension/extension.crx">Chrome Extension</a></li>
+          </ul>
+		  <a class="navbar-brand navbar-right" id="head_profile" href="home.html"><img src="images/profile.jpg"/>Thomas Powell</a>
+		  <form class="navbar-form navbar-right" role="form" method="get" action="searchpage.html">
+			  <div class="form-group">
+			    <input type="text" name="q" placeholder="Search" class="form-control">
+				<div class="btn-group">
+				  <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+				  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+					<span class="caret"></span>
+					<span class="sr-only">Toggle Dropdown</span>
+				  </button>
+				  <ul class="dropdown-menu" id="filter-drop" role="menu">
+					<li><a>keyword</a></li>
+					<li><a>url</a></li>
+					<li><a>time(epoch)</a></li>
+				  </ul>
+				</div>
+			  </div>
+		  </form>
+        </div>
+      </div>
+    </div>
+	<!-- NAV ENDS HERE -->
+    
+    
+  <div >
+    <iframe id="template_frame" src="meme_templates.html"></iframe>
+  </div>
+  <div id="toolbar" class="main_content">
+    <h3>Toolbar</h3>
+
+    <div id="tools" name="tools">
+      <ul>
+        <li><span>Top text</span></li>
+        <li><!-- <textarea id="top-text" class="rounded tool" name="top_text">Shut up and </textarea> --> 
+          <textarea id="top-text" class="rounded tool" name="top_text"></textarea>
+        </li>
+
+        <li><span>Bottom text</span></li>
+        <li><textarea id="bottom-text" class="rounded tool" name="top_text"></textarea></li>
+          
+        <li><span>Title</span></li>
+        <li><textarea id="title-text" class="rounded tool" name="title_text"></textarea></li>
+          <li>
+          <div id="saveDownload">
+                <button id ="saveImg" class="rounded">Save</button>
+
+                <a href='#' id="downloadImg" download="untitled.png">
+                    <button id ="downloadImg" class="rounded">Download</button>    
+                </a>
+          </li>
+            </div>
+<!--
+        <li><span>Text color</span></li>
+        <li><input class="color rounded tool"> </li> -->
+      </ul>
+    </div>
+  </div>
+  <noscript>Your browser does not support JavaScript!</noscript>
+  <div id="easel" class="main_content">
+    <div id= "template/uploade">
+        <button id="template_button" class="rounded">Templates</button>
+        <button id="upload_button" class="rounded"><input id= "upload_img" type='file'/></button>
+    </div>
+    <canvas id ="memecanvas" title="Select an image to begin!">
+        <img src="images/WorldCupMeme.jpg" id="uploaded-img">
+        <!-- To use this feature, you must update your browser.   -->        
+    </canvas>
+
+
+  </div>
+
+    <!--  FOOTERS -->
+    <div class="footer" role="navigation">
+      <div class="container">
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="team_page/index.html">About Us</a></li>
+			<li><a href="#">Privacy</a></li>
+            <li><a href="help.html">Help</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- END FOOTER -->
+  <!--<a href="#">Jump to Top</a> -->
+  <script src="js/upload_link.js"> </script>
+  <script src="js/create_meme.js"> </script>
+  <script src="js/template-grid.js"></script>
+
+</body>
+
+
+</html>

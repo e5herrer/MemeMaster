@@ -1,0 +1,173 @@
+body {
+	background: url(city_skyline.png) no-repeat center fixed;
+	-webkit-background-size: 100% auto;
+}
+
+#header_logo{
+    max-height: 70pt;
+    max-width: 70pt;
+    margin-left: 31%;
+
+}
+
+#preview-screens {
+    width: 100%;
+    overflow: hidden;
+    position:static;
+}
+
+.preview_spacing{
+    width: 10%;
+}
+.trending{
+    height: 200px;
+    width: 25%;
+    padding: 5px;
+}
+
+#main_preview{
+    object-position: center;
+}
+
+#right_preview{
+    /*width: 15%;
+    object-position: right;*/
+	height: 200px;
+    width: 25%;
+    padding: 5px;
+}
+
+#left_preview{
+    object-position: left;
+    margin-left: 10%
+}
+
+
+.form-wrapper {
+    width: 450px;
+    padding: 8px;
+    margin: 40px auto;
+    overflow: hidden;
+    border-width: 1px;
+    border-radius: 10px;    
+    background-color: #f6f6f6;
+}
+
+#submit {
+    background:#0099ff;
+    color:white;
+    font: 'trebuchet ms', trebuchet;
+    padding:10px 20px;
+    border-radius:0 10px 10px 0;
+    -moz-border-radius:0 10px 10px 0;
+    -webkit-border-radius:0 10px 10px 0;
+    -o-border-radius:0 10px 10px 0;
+    border:0 none;
+    font-weight:bold;
+}
+ 
+#search {
+    background: #eee;
+    padding:10px;
+     border-radius:10px 0 0 10px;
+    -moz-border-radius:10px 0 0 10px;
+    -webkit-border-radius:10px 0 0 10px;
+    -o-border-radius:10px 0 0 10px;
+    border-top-color: #f6f6f6;
+    border:0 none;
+    width:80%;
+ }
+
+.tilt {
+  -webkit-transition: all 0.3s ease;
+     -moz-transition: all 0.3s ease;
+       -o-transition: all 0.3s ease;
+      -ms-transition: all 0.3s ease;
+          transition: all 0.3s ease;
+}
+ 
+.tilt:hover {
+  -webkit-transform: rotate(-1deg);
+     -moz-transform: rotate(-1deg);
+       -o-transform: rotate(-1deg);
+      -ms-transform: rotate(-1deg);
+          transform: rotate(-1deg);
+    -webkit-filter: brightness(150%);
+}
+
+#mememaster-title{
+	font: 50px/1 Lobster,Arial,sans-serif;
+    align-self: center;
+    padding-bottom: 30px;
+}
+
+
+/* PROFILE BUTTON */
+.my_profile_button {
+    float: right;
+	-moz-box-shadow:inset 0px 15px 6px -1px #f5978e;
+	-webkit-box-shadow:inset 0px 15px 6px -1px #f5978e;
+	box-shadow:inset 0px 15px 6px -1px #f5978e;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #f24537), color-stop(1, #c62d1f) );
+	background:-moz-linear-gradient( center top, #f24537 5%, #c62d1f 100% );
+	background-color:#f24537;
+	-webkit-border-top-left-radius:23px;
+	-moz-border-radius-topleft:23px;
+	border-top-left-radius:23px;
+	-webkit-border-top-right-radius:0px;
+	-moz-border-radius-topright:0px;
+	border-top-right-radius:0px;
+	-webkit-border-bottom-right-radius:0px;
+	-moz-border-radius-bottomright:0px;
+	border-bottom-right-radius:0px;
+	-webkit-border-bottom-left-radius:23px;
+	-moz-border-radius-bottomleft:23px;
+	border-bottom-left-radius:23px;
+	text-indent:-6.58px;
+	border:2px solid #d02718;
+	display:inline-block;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:14px;
+	font-weight:bold;
+	font-style:normal;
+	height:31px;
+	line-height:31px;
+	width:94px;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:7px 1px 32px #810e05;
+}
+.my_profile_button:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #c62d1f), color-stop(1, #f24537) );
+	background:-moz-linear-gradient( center top, #c62d1f 5%, #f24537 100% );
+	background-color:#c62d1f;
+}.classname:active {
+	position:relative;
+	top:1px;
+}
+#tag-container{
+	width: 720px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.tag-button{
+	background-color: #b3b3b3;
+	height: 20px;
+	width: 100px;
+	padding: 10px;
+	border-radius: 5px;
+	color: white;
+	cursor: pointer;
+	font-family: sans-serif;
+	font-weight: bold;
+	text-align: center;
+	margin-left: 10px;
+	margin-right: 10px;
+	display: inline-block;
+}
+
+.tag-button:hover{
+	background-color: #a3a3a3;
+}

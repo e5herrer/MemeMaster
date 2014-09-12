@@ -1,0 +1,68 @@
+<html>
+<head>
+  <title>MemeMaster</title>
+  <style>
+    #mainarea{
+      min-width: 350px;
+      background-color: white ;
+    }
+    #dragAndDrop{
+      width: 100%;
+      height: 100px;
+      border: 1px solid black;
+      border-radius: 2px;
+      margin: 2px;
+      box-shadow: 5px;
+      background-color: #C0C0C0;
+    }
+    img {
+        margin: 5px;
+        border: 2px solid black;
+        vertical-align: middle;
+        width: 75px;
+        height: 75px;
+        max-width: 75px;
+      }
+    .imgdiv{
+      margin: 15px;
+      width: 75px;
+      display: inline-block;
+      float: left;
+      text-align: center;
+    }
+    .imgbutton{
+      width: 80px;
+      height: 35px;
+      text-align:center;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      -webkit-transition: all 0.2s ease-in-out;
+      -ms-transition: all 0.2s ease-in-out;
+      -moz-transition: all 0.2s ease-in-out;
+      -o-transition: all 0.2s ease-in-out;
+      transition: all 0.2s ease-in-out;
+    }
+    .memed{
+      background: #0CADA7;
+    }
+    .notMemed{
+      background: #EE8532;
+    }
+    #nf{
+      background-color: white;
+      text-align: center;
+      color: gray;
+    }
+  </style>
+</head>
+<body>
+  <div id='mainarea'>
+    <textarea id="dragAndDrop" class="dropbox" placeholder='Paste URL here for additional images.'></textarea>
+    <ul id='imglist'></ul>
+  </div>
+</body>
+<script src="jquery.min.js"></script>
+<script src='firebase.js'></script>
+<script type="text/javascript" src='popup.js'></script>
+</html>

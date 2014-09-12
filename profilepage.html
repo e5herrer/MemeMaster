@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+<!--head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">    
+  <title>MemeMaster Home Page</title>
+  <link rel="stylesheet" href="css/common.css">
+</head-->
+<head>
+	<title>C.R.A.P. Meme Search Result</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="css/common.css" >
+	<link rel="stylesheet" type="text/css" href="css/selectedScreen.css" >
+	<link rel="stylesheet" type="text/css" href="css/resultPage.css" >
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" >
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lobster" />
+	<link rel="shortcut icon" href="favicon.ico">
+	<script src='bootstrap/css/navbar-static-top.css'></script>
+	<script src='https://cdn.firebase.com/js/client/1.0.15/firebase.js'></script>
+	<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
+	<script src='bootstrap/js/bootstrap.js'></script>
+</head>
+<body>
+    <div class="navbar navbar-default navbar-static-top" id="top" role="navigation">
+      <div id='top' class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button> 
+          <a class="navbar-brand" href="index.html"><img alt="" src="images/logo.png"/>Meme Master</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+			<li><a id="upload_link" href="#">Upload</a></li>
+            <li><a href="meme_maker.html">Create</a></li>
+			<li><a href="extension/extension.crx">Chrome Extension</a></li>
+          </ul>
+		  <a class="navbar-brand navbar-right" id="head_profile" href="home.html"><img alt="" src="images/profile.jpg"/>Thomas Powell</a>
+		  <form class="navbar-form navbar-right" role="form" method="get" action="searchpage.html">
+			  <div class="form-group">
+			    <input type="text" name="q" placeholder="Search" class="form-control">
+				<div class="btn-group">
+				  <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+				  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+					<span class="caret"></span>
+					<span class="sr-only">Toggle Dropdown</span>
+				  </button>
+				  <ul class="dropdown-menu" id="filter-drop" role="menu">
+					<li><a>keyword</a></li>
+					<li><a>url</a></li>
+					<li><a>time(epoch)</a></li>
+				  </ul>  
+				<input type="text" name="filter" value ="keyword" id="invis_filter">
+				</div>
+			  </div>
+		  </form>
+        </div>
+      </div>
+    </div>
+
+    <br />
+
+    <div id="body_container" style="margin-top: 10px; padding-left:5%; width: 95%;"> 
+        <div id="resultBody">
+            <div class="resultRow">
+            </div>
+			<div  style="align:left;">
+			 <a href="#">Jump to Top</a>
+			</div>
+            <!--div class="load-more">
+                <span class="load-more-btn">LOAD MORE</span>
+            </div>
+			
+            <div class="ajax-loading"></div>
+            <div class="ajax-error">
+                <span>LOAD FAIL</span>
+                <span class="load-more-btn">RETRY</span>
+            </div>
+            <div class="ajax-empty">NO RESULT</div>
+        </div>
+        <div class="clear-both"></div-->
+    </div>
+	
+    <hr>
+	
+	<div class="footer" role="navigation">
+      <div class="container">
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="team_page/index.html">About Us</a></li>
+			<li><a href="#">Privacy</a></li>
+            <li><a href="help.html">Help</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+	
+	<script src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="js/jquery.lazyload.js?v=1.9.1"></script>
+	<script>
+        var picStartIndex = 0;
+        var pageCount = 24;
+
+        function createFigure(){
+            var split = location.search.replace('?', '').split('=');
+            var searchTerm = split[1];
+            var request = $.ajax({
+                type: 'GET',
+                url: 'http://api.giphy.com/v1/gifs/search?q=' + searchTerm + '&offset=' + picStartIndex + '&limit=' + pageCount + '&api_key=dc6zaTOxFJmzC',
+                dataType: "json"
+            });
+            //hide the load-more button when the ajax is loading
+            $(".load-more").hide();
+            $(".ajax-loading").show();
+            $(".ajax-error").hide();
+            $(".ajax-empty").hide();
+            request.done(function(data){
+                //console.log(data);
+                var htmlText='';
+                //create figure
+                if(data["data"].length>0){
+                    for(var i=0; i<data["data"].length; i++){
+                        var path = data["data"][i]["images"]["fixed_width_downsampled"]["url"]
+                        var figureHref = "selectedScreen.html?gif=" + data["data"][i]["images"]["fixed_height"]["url"];
+                        var figcaptionHref="javascript:void(0);";
+                        htmlText += '<figure><a href="'+figureHref+'"><img class="thumbnail lazy" data-original="'+path+'"  alt="" /></a><figcaption><a href="'+figcaptionHref+'">Remove</a></figcaption></figure>'
+                    }
+                    picStartIndex += data.pagination.count;
+                    //add the figure to the resultRow
+                    $(".resultRow").append(htmlText);
+                    //use lazyload
+                    $(".lazy").lazyload({
+                        placeholder : "images/loading.gif",
+                        effect : "fadeIn"
+                    });
+                    //show the load-more button when the ajax is done
+                    if(data.pagination.count >= pageCount){
+                        $(".load-more").show();
+                    }
+                    $(".ajax-loading").hide();
+                    $(".ajax-error").hide();
+                    $(".ajax-empty").hide();
+                    //when the mouse enter the figure show the add-to-Favorite button
+                    $(".resultRow figure").mouseenter(function(){
+                        $(this).find("figcaption").stop().slideDown();
+                    });
+                    //when the mouse leave the figure hide the add-to-Favorite button
+                    $(".resultRow figure").mouseleave(function(){
+                        $(this).find("figcaption").stop().slideUp();
+                    });
+                }
+                else{
+                    $(".load-more").hide();
+                    $(".ajax-loading").hide();
+                    $(".ajax-error").hide();
+                    $(".ajax-empty").show();
+                }
+            });
+            request.error(function(e){
+                console.log(e);
+                $(".ajax-error").show();
+                $(".load-more").hide();
+                $(".ajax-loading").hide();
+                $(".ajax-empty").hide();
+            });
+        }
+        $(document).ready(function(){
+            createFigure();
+            $(".load-more-btn").click(function(e){
+                createFigure();
+            });
+        });
+	</script>
+    
+</body>
+
+</html>

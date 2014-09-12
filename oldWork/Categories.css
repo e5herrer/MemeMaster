@@ -1,0 +1,36 @@
+h1.title{
+    color:white;
+    text-align:center;
+}
+
+img.thumbnail {
+    width:200px;
+    height:200px;
+}
+
+header {
+    border: double;   
+    background-image: url(images/doge-banner.jpg);
+}
+
+figure {
+    display: inline-block;
+    margin: 20px;
+}
+
+figure img {
+    vertical-align: top;
+}
+
+figure figcaption {
+    text-align: center;
+}
+
+body {
+    a:link {color:blue;}
+    a:visited {color:purple;}
+}
+
+
+
+

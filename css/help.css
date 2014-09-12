@@ -1,0 +1,18 @@
+@media (min-width: 1200px) {
+  #main_section {
+    width: 700px;
+	float: left;
+  }
+}
+
+.sidebar-module {
+  margin-top: 5%;
+  display: inline;
+  margin-right: 5%;
+}
+
+.help-side-title{
+  text-align: center;
+  margin-top: -15px;
+  margin-bottom: 20px;
+}

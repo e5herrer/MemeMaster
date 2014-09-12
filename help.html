@@ -1,0 +1,145 @@
+<!Doctype html>
+<html>
+    <head>
+        <title> 
+            Help
+        </title>
+        
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" >
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/help.css"/>
+		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lobster" />
+		<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
+		<script src='bootstrap/js/bootstrap.js'></script>        
+    </head>
+    
+    <body>
+	
+	
+  	<!--HEAD/NAV STARTS HERE-->
+    <div class="navbar navbar-default navbar-static-top" role="navigation">
+      <div id='top' class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button> 
+          <a class="navbar-brand" href="index.html"><img src="images/logo.png"/>Meme Master</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+			<li><a id="upload_link" href="#">Upload</a></li>
+            <li><a href="meme_maker.html">Create</a></li>
+			<li><a href="extension/extension.crx">Chrome Extension</a></li>
+          </ul>
+		  <a class="navbar-brand navbar-right" id="head_profile" href="home.html"><img src="images/profile.jpg"/>Thomas Powell</a>
+		  <form class="navbar-form navbar-right" role="form" method="get" action="searchpage.html">
+			  <div class="form-group">
+			    <input type="text" name="q" placeholder="Search" class="form-control">
+				<div class="btn-group">
+				  <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+				  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+					<span class="caret"></span>
+					<span class="sr-only">Toggle Dropdown</span>
+				  </button>
+				  <ul class="dropdown-menu" id="filter-drop" role="menu">
+					<li><a>keyword</a></li>
+					<li><a>url</a></li>
+					<li><a>time(epoch)</a></li>
+				  </ul>
+				</div>
+			  </div>
+		  </form>
+        </div>
+      </div>
+    </div>
+	
+	<!-- NAV ENDS HERE -->
+    <div class="container">
+		<div class="sidebar-module hidden-m hidden-sm hidden-xs">
+			<h4>Need help?</h4>
+			<ol class="list-unstyled">
+			  <li>
+				  <a href="team_page\index.html"><img class="thumbnail" src="images/report_problem.png"/>
+				  <div class="help-side-title">Problem Report</div></a>
+			  </li>
+			  <li>
+				  <a href="team_page\index.html"><img class="thumbnail" src="images/suggestions.png"/>
+				  <div class="help-side-title">Suggestions</div></a>
+			  </li>
+			  <li>
+				  <a href="team_page\index.html"><img class="thumbnail" src="images/logo.png"/>
+				  <div class="help-side-title">Contact Us</div></a>
+			  </li>
+			</ol>
+		</div>
+		<div id="main_section">
+            <div class="page-header">
+				<h1>Frequently Asked Questions</h1>
+			</div> 
+            
+            <div class="panel panel-default">
+                <section class="panel-heading">
+                    <h3> Question 1: What is this website for? </h3>
+                </section>
+                <section class="panel-body">
+                    <h4>This is the MemeMaster web application! It can be used to view, collect, and even share awesome memes with other meme enthusiasts like yourself!
+                    </h4> 
+                </section>
+            </div>
+
+            <div class="panel panel-default">
+                <section class="panel-heading">
+                    <h3> Question 2: How do you upload a meme? </h3>
+                </section>
+                <section class="panel-body">
+                    <h4>We make uploading memes super easy! Simply go to the "Uploads" page from the nav bar and then either browse your local file system for the meme you wish to upload or enter in the URL of where the meme is located.
+                    </h4> 
+                </section>
+            </div>
+            
+            <div class="panel panel-default">
+                <section class="panel-heading">
+                    <h3> Question 3: How can I create my own meme? </h3>
+                </section>
+                <section class="panel-body">
+                    <h4>To create a meme of your own, all you need to do is go to the "Create" page from the nav bar and then add the picture for the meme, as well as some text to the top and/or bottom and then click "Upload a meme". Simple as that.
+                    </h4> 
+                </section>
+            </div>
+
+            <div class="panel panel-default">
+                <section class="panel-heading">
+                    <h3> Question 4: Why is your website so awesome? </h3>
+                </section>
+                <section class="panel-body">
+                    <h4>We're just that good :)
+                    </h4> 
+                </section>
+            </div>
+		</div>
+	</div>
+		<br/>
+		<br/>
+		<!-- FOOTER STARTS HERE-->
+		<div class="footer" role="navigation">
+		  <div class="container">
+			<div class="navbar-collapse collapse">
+			  <ul class="nav navbar-nav">
+				<li><a href="team_page/index.html">About Us</a></li>
+				<li><a href="#">Privacy</a></li>
+				<li><a href="help.html">Help</a></li>
+			  </ul>
+			</div>
+		  </div>
+		</div>
+		<!-- FOOTER ENDS HERE-->
+		
+        <script src="js/upload_link.js"> </script>
+    </body>
+</html>
+

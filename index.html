@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>MemeMaster Login</title>
+  <link rel="stylesheet" type="text/css" href="css/index.css">
+    
+    <!-- NAVBAR -->
+  <!-- Including the Lobster font from Google's Font Directory -->
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lobster" />
+    
+</head>
+<body>
+  <div class="heading">
+    <header class="login">
+        <h1 id="mememaster-title"><img id="header_logo" src="images/logo.png" alt="MemeMaster"> MemeMaster <button onClick="location.href='home.html'" class="my_profile_button">My Profile</button></h1>
+    </header>
+
+  </div>
+  <div class="landingcont">
+        <div id="preview_screens">
+			<a id="left_preview_link">
+				<img id = "left_preview" class="trending tilt" src="">
+			</a>
+			<a id="main_preview_link">
+				<img id= "main_preview" class="trending tilt" src="">
+			</a>
+            <a id="right_preview_link">
+                <img id="right_preview" class="trending tilt" src="">
+            </a>
+        </div>
+        <form action="searchpage.html" class="form-wrapper" method="get">
+            <input type="text" id="search" name="q" placeholder="Search..." required>
+            <input type="submit" value="go" id="submit">
+        </form>
+		<div id="trendy-tags">
+			<div id="tag-container">
+				<span class="tag-button" id="tag1">corgis</span>
+				<span class="tag-button" id="tag2">funny</span>
+				<span class="tag-button" id="tag3">nope</span>
+				<span class="tag-button" id="tag4">bruce lee</span>
+				<span class="tag-button" id="tag5">terry crews</span>
+			</div>
+		</div>
+  </div>
+  <script src="http://code.jquery.com/jquery.min.js"></script>
+  <script>
+	var request = $.ajax({
+		type: 'GET',
+		url: 'http://api.giphy.com/v1/gifs/trending?api_key=dc6zaTOxFJmzC',
+		dataType: "json"
+	});
+	request.done(function(data){
+		console.log(data);		
+		$("#left_preview").attr("src", data["data"][0]["images"]["fixed_height"]["url"]);
+		$("#left_preview_link").attr("href", "selectedScreen.html?gif=" + data["data"][0]["images"]["fixed_height"]["url"]);
+		$("#main_preview").attr("src", data["data"][1]["images"]["fixed_height"]["url"]);
+		$("#main_preview_link").attr("href", "selectedScreen.html?gif=" + data["data"][1]["images"]["fixed_height"]["url"]);
+		$("#right_preview").attr("src", data["data"][2]["images"]["fixed_height"]["url"]);
+		$("#right_preview_link").attr("href", "selectedScreen.html?gif=" + data["data"][2]["images"]["fixed_height"]["url"]);
+		
+	}); 
+	
+	var tags = Array("corgis", "corgi", "bruce lee", "terry crews", "league", "minah", "snsd", 
+	                 "jessica alba", "pokemon", "funny", "sad", "happy", "lol", "omg", "nope", "dog", "cat",
+					 "movie", "zelda", "random", "bird", "plane", "anime", "food", "kanye", "yeezy", "car", 
+					 "audi", "gameofthrones");
+	function genRanTag(tags){
+		return tags[Math.floor(Math.random()*(tags.length-1))];
+	}
+	
+	$('#tag1').html(genRanTag(tags));
+	$('#tag2').html(genRanTag(tags));
+	$('#tag3').html(genRanTag(tags));
+	$('#tag4').html(genRanTag(tags));
+	$('#tag5').html(genRanTag(tags));
+	
+	$( ".tag-button" ).click(function() {
+		$("#left_preview").attr("src", "");
+		$("#main_preview").attr("src", "");
+		$("#right_preview").attr("src", "");
+	
+	  	var request = $.ajax({
+			type: 'GET',
+			url: 'http://api.giphy.com/v1/gifs/search?q=' + $(this).text() + '&api_key=dc6zaTOxFJmzC',
+			dataType: "json"
+		});
+		request.done(function(data){
+			console.log(data);
+			$("#left_preview").attr("src", data["data"][0]["images"]["fixed_height"]["url"]);
+			$("#left_preview_link").attr("href", "selectedScreen.html?gif=" + data["data"][0]["images"]["fixed_height"]["url"]);
+			$("#main_preview").attr("src", data["data"][1]["images"]["fixed_height"]["url"]);
+			$("#main_preview_link").attr("href", "selectedScreen.html?gif=" + data["data"][1]["images"]["fixed_height"]["url"]);
+			$("#right_preview").attr("src", data["data"][2]["images"]["fixed_height"]["url"]);
+			$("#right_preview_link").attr("href", "selectedScreen.html?gif=" + data["data"][2]["images"]["fixed_height"]["url"]);
+		}); 
+	});
+  </script>
+</body>
+</html>

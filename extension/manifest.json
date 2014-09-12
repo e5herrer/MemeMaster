@@ -1,0 +1,18 @@
+{
+    "manifest_version": 2,
+
+    "name": "Memes on demand",
+    "description": "Save memes from any site to your MemeMaster account.",
+    "version": "1.0",
+
+    "permissions": [
+        "http://cse134-135-2014.github.io/cse134_group16", "contextMenus"
+    ],
+    "browser_action": {
+        "default_icon": "extension.png",
+        "default_popup": "popup.html"
+    },
+    "permissions": [
+          "tabs"
+    ]
+}

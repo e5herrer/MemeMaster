@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>C.R.A.P. Meme Organizer</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="css/common.css" >
+	<link rel="stylesheet" type="text/css" href="css/selectedScreen.css" >
+	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" >
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lobster" />
+	<link rel="shortcut icon" href="favicon.ico">
+	<script src='bootstrap/css/navbar-static-top.css'></script>
+	<script src='https://cdn.firebase.com/js/client/1.0.15/firebase.js'></script>
+	<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
+	<script src='bootstrap/js/bootstrap.js'></script>
+</head>
+
+<body>
+	<!--HEADER/NAV STARTS HERE-->
+    <div class="navbar navbar-default navbar-static-top" id="top" role="navigation">
+      <div id='top' class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button> 
+          <a class="navbar-brand" href="index.html"><img src="images/logo.png"/>Meme Master</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+			<li><a id="upload_link" href="#">Upload</a></li>
+            <li><a href="meme_maker.html">Create</a></li>
+			<li><a href="extension/extension.crx">Chrome Extension</a></li>
+          </ul>
+		  <a class="navbar-brand navbar-right" id="head_profile" href="home.html"><img src="images/profile.jpg"/>Thomas Powell</a>
+		  <form class="navbar-form navbar-right" role="form" method="get" action="searchpage.html">
+			  <div class="form-group">
+			    <input type="text" name="q" placeholder="Search" class="form-control">
+				<div class="btn-group">
+				  <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+				  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+					<span class="caret"></span>
+					<span class="sr-only">Toggle Dropdown</span>
+				  </button>
+				  <ul class="dropdown-menu" id="filter-drop" role="menu">
+					<li><a>keyword</a></li>
+					<li><a>url</a></li>
+					<li><a>time(epoch)</a></li>
+				  </ul>  
+				<input type="text" name="filter" value ="keyword" id="invis_filter">
+				</div>
+			  </div>
+		  </form>
+        </div>
+      </div>
+    </div>
+	<!-- NAV ENDS HERE -->
+	
+    <div class="container">
+		<div class="sidebar-module hidden-sm hidden-xs">
+            <h4>Trending Memes</h4>
+            <ol class="list-unstyled">
+              <li><a id="recent1" href="#"><img class="thumbnail" src=""/></a></li>
+              <li><a id="recent2" href="#"><img class="thumbnail" src=""/></a></li>
+              <li><a id="recent3" href="#"><img class="thumbnail" src=""/></a></li>
+            </ol>
+        </div>
+		<div id="selected_meme">
+			<img src="" alt="filler">
+		</div>
+		<div id="img_info">
+			<ul id="display_styles">
+			  <li>
+				<a href="#" id="fav_button"><span class="glyphicon glyphicon-heart"></span></a><!--save link-->
+			  </li>
+			  <li>
+				<a href="#" id="save_button"><span class="glyphicon glyphicon-save"></span></a><!--download link-->
+			  </li>
+			  <li>
+				<form class="ratingsForm">
+					<div class="stars">
+						<input type="radio" name="star" class="star-1" id="star-1" value="1"/>
+						<label class="star-1" for="star-1">1</label>
+						<input type="radio" name="star" class="star-2" id="star-2" value="2"/>
+						<label class="star-2" for="star-2">2</label>
+						<input type="radio" name="star" class="star-3" id="star-3" value="3"/>
+						<label class="star-3" for="star-3">3</label>
+						<input type="radio" name="star" class="star-4" id="star-4" value="4"/>
+						<label class="star-4" for="star-4">4</label>
+						<input type="radio" name="star" class="star-5" id="star-5" value="5"/>
+						<label class="star-5" for="star-5">5</label>
+						<span></span>
+					</div>
+				</form>
+			  </li>
+			</ul>
+		</div>		
+		<br/>
+		<div id="comment_form">
+			<div>
+				<input id="comment_user" class="form-control" type="text" placeholder="Name">
+				<textarea id="comment_text" class="form-control" rows="5" name="comment" placeholder="Comment (press enter to submit)"></textarea>
+			</div>
+			<div id="list_of_comments" class="jumbotron"> </div>	
+				<script>
+					// FIRST GET THE TRENDING MEMES
+					var request = $.ajax({
+						type: 'GET',
+						url: 'http://api.giphy.com/v1/gifs/trending?api_key=dc6zaTOxFJmzC',
+						dataType: "json"
+					});
+					request.done(function(data){
+						console.log(data);		
+						$("#recent1 img").attr("src", data["data"][0]["images"]["fixed_height"]["url"]);
+						$("#recent1").attr("href", "selectedScreen.html?gif=" + data["data"][0]["images"]["fixed_height"]["url"]);
+						$("#recent2 img").attr("src", data["data"][1]["images"]["fixed_height"]["url"]);
+						$("#recent2").attr("href", "selectedScreen.html?gif=" + data["data"][1]["images"]["fixed_height"]["url"]);
+						$("#recent3 img").attr("src", data["data"][2]["images"]["fixed_height"]["url"]);
+						$("#recent3").attr("href", "selectedScreen.html?gif=" + data["data"][2]["images"]["fixed_height"]["url"]);
+						
+					});		
+
+					// BEGIN EVERYTHING ELSE
+					$(".stars").hide();
+					$("#comment_form").hide();
+					
+					// SET IMAGE FROM GET VARIABLE
+					var split = location.search.replace('?', '').split('=');
+					
+                    if(split[0] == 'gif'){
+                        var imageUrl = split[1];
+					    $('#selected_meme img').attr("src", imageUrl);
+                        $('#save_button').attr("href", imageUrl);
+					   $('#save_button').attr("download", imageUrl);
+                    }
+                    else if(split[0] == 'node'){
+                        var imageNode = split[1];
+                        var ref = new Firebase( 'https://blinding-fire-4174.firebaseio.com/myimgs').child(imageNode);
+                        ref.once('value', function (snapshot) {  $('#selected_meme img').attr("src", snapshot.val().src);
+                                                               $('#save_button').attr("href", snapshot.val().src);
+					                                           $('#save_button').attr("download", snapshot.val().src);
+                                                                    });
+                    }
+                    else{
+                        alert("Failed to find the image resource");
+                    }
+                    /*
+					var imageUrl = split[1];
+					$('#selected_meme img').attr("src", imageUrl);
+					$('#save_button').attr("href", imageUrl);
+					$('#save_button').attr("download", imageUrl);
+					*/
+					// Sam's Saving Functions
+					String.prototype.hashCode = function() {
+					  var hash = 0, i, chr, len;
+					  if (this.length == 0) return hash;
+					  for (i = 0, len = this.length; i < len; i++) {
+						chr   = this.charCodeAt(i);
+						hash  = ((hash << 5) - hash) + chr;
+						hash |= 0; // Convert to 32bit integer
+					  }
+					  return hash;
+					};
+					
+					function saveImage(source){
+						file = 'index';
+						name = source.hashCode();
+						rating = 0;
+						var ref = new Firebase('http://blinding-fire-4174.firebaseio.com').child('myimgs');
+
+						ref.push( 
+							{   file: file,
+								src: source,
+								name: name,
+								rating: rating,
+								favorite: 0
+							});
+					}
+					
+					// CHECK FOR PREVIOUS ENTRY AND UPDATE EVERYTHING ACCORDINGLY
+					var imageFolder = new Firebase('https://blinding-fire-4174.firebaseio.com/myimgs');
+					var currNode = new Firebase('https://blinding-fire-4174.firebaseio.com/myimgs');
+					var commentNode = new Firebase('https://blinding-fire-4174.firebaseio.com/myimgs');
+					
+					function updateWithCurrent(){						
+						imageFolder.once('value', function(result){
+						  var myimgs = result.val();
+						  for(i in myimgs){
+							if(myimgs[i]["src"] == imageUrl){
+							  currNode = imageFolder.child(i);
+							  commentNode = currNode.child("comments");
+							 
+							  if(myimgs[i]["favorite"] == 1){
+								$(".glyphicon-heart").css("color", "#e80c69");
+							  }
+							  
+							  switch(myimgs[i]["rating"]){
+								  case "0":
+									$('input[name=star]').attr('checked',false);
+									break;
+								  case "1":
+									$(".star-1").attr("checked", true);
+									break;
+								  case "2":
+									$(".star-2").attr("checked", true);
+									break;
+								  case "3":
+									$(".star-3").attr("checked", true);
+									break;
+								  case "4":
+									$(".star-4").attr("checked", true);
+									break;
+								  case "5":
+									$(".star-5").attr("checked", true);
+									break;
+							  }
+							  
+							  $(".stars").show();
+							  $("#comment_form").show();
+							  i = myimgs.length;
+							  
+							  commentNode.on('child_added', function(snapshot){
+								  var comment = snapshot.val();
+								  displayComment(comment.name, comment.text);
+							  });							  
+							}
+						  }
+						  
+						  if($("#comment_form").is(":visible") != true){
+							console.log("I got here!");
+							saveImage(imageUrl);
+							updateWithCurrent();
+						  }  
+						});
+					};
+					
+					updateWithCurrent();
+					
+					// KENNY'S COMMENT SYSTEM
+					$('#comment_text').keypress(function(e){
+						if(e.keyCode == 13)
+						{
+							e.preventDefault();
+							var name = $('#comment_user').val();
+							var text = $('#comment_text').val();
+							commentNode.push({name: name, text: text});
+							$('#comment_user').val('');
+							$('#comment_text').val('');
+						}
+					});
+					
+					function displayComment(name, text){
+						if(name == '')
+							$('<div/>').text(text).prepend($('<b/>').text('Anonymous'+': ')).appendTo($('#list_of_comments'));
+						else
+							$('<div/>').text(text).prepend($('<b/>').text(name+': ')).appendTo($('#list_of_comments'));
+							
+						$('#list_of_comments')[0].scrollTop = $('#list_of_comments')[0].scrollHeight;
+					};
+					
+					function toggleFav(){
+						currNode.once('value', function(result){
+							current = result.val();
+							if(current["favorite"] != 1){
+								currNode.update({favorite: 1});
+								$(".glyphicon-heart").css("color", "#e80c69");
+							}
+							
+							else{
+								currNode.update({favorite: 0});
+								$(".glyphicon-heart").css("color", "#000000");
+							}
+						});
+					};
+					
+					// FAV BUTTON AND STARS AFTER UPDATE
+					$("#fav_button").click(toggleFav);
+					
+					$('input[name=star]').click(function(){
+						currNode.update({rating: $(this).attr('value')});
+					});
+				</script>
+		</div>
+    </div> 
+    
+	<!-- FOOTER STARTS HERE-->
+    <div class="footer" role="navigation">
+      <div class="container">
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="team_page/index.html">About Us</a></li>
+			<li><a href="#">Privacy</a></li>
+            <li><a href="help.html">Help</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+	<!-- FOOTER ENDS HERE-->
+	
+  <script src="js/upload_link.js"> </script>
+  <script src='js/nav_filter.js'></script>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+CSE 135
+Group 16
+
+MemeMaster Design Document
+
+index.html
+Our index page is designed to be a simple search. We wanted the simplicity of a google search.
+However, we wanted to add a bit more flare to a search. The three panels above the searchbar
+will display random trending gifs. However, whenever a user types in a search query they will
+preview gifs related to that query. The hash tags below the search box are trending hash tags.
+They will animate aroudn they page. When clicked they will fill the search box and the the 
+pannels wil preview top gifs/memes related to that hash tag.
+
+Cadegories.html
+The categories will be layed out in a 4xn grid. They will have a sill image of a gif related
+to that search term. Whever the mouse hovers above the field it will play the gif. The text
+will also hover overlay above the category.
+
+aboutUs.html
+Our team page. It's a fictional fun description of the team. No further work is needed for 
+this page.
+
+myJunk.html
+myJunk is all of the users collected gifs.
+The search bar- The search bar is a way to quickly search through your colleciton of gifs.
+Whenever the user finishes his query search the query box will only display all related
+files and folders. If a user insers a URL and hits enter it will display an upload gif
+popup. The popup will allow the user to give the gif a title, hashtags, and will also
+add things such as date submitted, size, etc. We also included a file upload button incase
+the user has it saved on his computer. The contained tags section displays all
+the tags withing the current directory. This is a way to help the user further define
+features which he is looking for. As the user navigates through his directories the tags bar
+will be updated. The files directory will be a 3xn scrollable grid. Each grid will be a 
+still image with the title as an overlay. Whenever the user hovers over the directory or 
+gif it will begin to play if applicable.
+
+resultPage.html
+A simple results page that containes a 4xn grid of the searched gifs. Below the search bar
+and above the grid will have a drop down menue that will allow users to add restrictions to 
+their search. 
+
+gifs, memes,  and thumbnails
+Each of these will allow users to download the media or add to their favorite via the right
+click menue.
+
